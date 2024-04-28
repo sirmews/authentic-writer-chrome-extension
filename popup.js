@@ -1,15 +1,14 @@
-const storageKeys = ['backspaceCount', 'copyCount', 'pasteCount', 'arrowCount'];
+const storageKeys = ['backspaceCount', 'copyCount', 'pasteCount', 'arrowCount', 'undoCount'];
 
 /**
  * On document load, get the stored values of backspace, copy, and paste counts
  * Also attach an event listener to the clear button
  */
-document.addEventListener('DOMContentLoaded', function() {
-	chrome.storage.sync.get(storageKeys, function(items) {
-			document.getElementById('backspaceCount').textContent = items.backspaceCount || '0';
-			document.getElementById('copyCount').textContent = items.copyCount || '0';
-			document.getElementById('pasteCount').textContent = items.pasteCount || '0';
-			document.getElementById('arrowCount').textContent = items.arrowCount || '0';
+document.addEventListener('DOMContentLoaded', async function() {
+	const storageValues = await chrome.storage.sync.get(storageKeys) 
+
+	Object.keys(storageValues).forEach(key => {
+		document.getElementById(key).textContent = storageValues[key] || '0';
 	});
 
 	// We have to do this because of Chrome's Content Security Policy
@@ -20,11 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Clear the stored values of backspace, copy, and paste counts
  */
-function clearStats() {
-	chrome.storage.sync.set({'backspaceCount': 0, 'copyCount': 0, 'pasteCount': 0}, () => {
-			document.getElementById('backspaceCount').textContent = '0';
-			document.getElementById('copyCount').textContent = '0';
-			document.getElementById('pasteCount').textContent = '0';
-			document.getElementById('arrowCount').textContent = '0';
-	});
+async function clearStats() {
+
+	const setDefaultValues = storageKeys.reduce((acc, key) => {
+		document.getElementById(key).textContent = '0';
+		acc[key] = 0;
+		return acc;
+	}, {});
+
+	await chrome.storage.sync.set(setDefaultValues);
 }
