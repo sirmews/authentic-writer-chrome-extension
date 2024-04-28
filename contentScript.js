@@ -1,3 +1,5 @@
+const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+
 /**
  * Listen for keydown events and prevent the default behavior of backspace 
  */
@@ -12,11 +14,11 @@ document.addEventListener('keydown', function(event) {
 
 	if (isEditable) {
 		// Prevent default behavior for left and right arrow keys
-		if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-				event.preventDefault();
-				console.log('Left or Right movement blocked');
+		if (keys.includes(event.key)) {
+			event.preventDefault();
+			updateCounter('arrow')
 		}
-}
+	}
 }, true);
 
 /**

@@ -1,12 +1,15 @@
+const storageKeys = ['backspaceCount', 'copyCount', 'pasteCount', 'arrowCount'];
+
 /**
  * On document load, get the stored values of backspace, copy, and paste counts
  * Also attach an event listener to the clear button
  */
 document.addEventListener('DOMContentLoaded', function() {
-	chrome.storage.sync.get(['backspaceCount', 'copyCount', 'pasteCount'], function(items) {
+	chrome.storage.sync.get(storageKeys, function(items) {
 			document.getElementById('backspaceCount').textContent = items.backspaceCount || '0';
 			document.getElementById('copyCount').textContent = items.copyCount || '0';
 			document.getElementById('pasteCount').textContent = items.pasteCount || '0';
+			document.getElementById('arrowCount').textContent = items.arrowCount || '0';
 	});
 
 	// We have to do this because of Chrome's Content Security Policy
@@ -22,5 +25,6 @@ function clearStats() {
 			document.getElementById('backspaceCount').textContent = '0';
 			document.getElementById('copyCount').textContent = '0';
 			document.getElementById('pasteCount').textContent = '0';
+			document.getElementById('arrowCount').textContent = '0';
 	});
 }
