@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Authentic Writer",
+  "description": "Authentic Writer is a tool that helps you write authentic content by removing copy, paste and backspace.",
+  "version": "1.0",
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+    "activeTab",
+    "clipboardRead",
+    "clipboardWrite",
+		"storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.substack.com/*"],
+      "js": ["contentScript.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

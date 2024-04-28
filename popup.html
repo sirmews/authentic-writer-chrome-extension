@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentic Writer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            min-width: 250px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .clear-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+	</style>
+</head>
+<body>
+	<h1>Activity Stats</h1>
+	<table>
+			<tr>
+					<th>Action</th>
+					<th>Count</th>
+			</tr>
+			<tr>
+					<td>Backspaces</td>
+					<td id="backspaceCount">Loading...</td>
+			</tr>
+			<tr>
+					<td>Copies</td>
+					<td id="copyCount">Loading...</td>
+			</tr>
+			<tr>
+					<td>Pastes</td>
+					<td id="pasteCount">Loading...</td>
+			</tr>
+	</table>
+	<button class="clear-button" id="clearButton">Clear Stats</button>
+	<script src="popup.js"></script>
+</body>
+</html>
