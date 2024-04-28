@@ -15,6 +15,7 @@ document.addEventListener('keydown', function(event) {
  * Listen for copy events and prevent the default behavior
  */
 document.addEventListener('copy', function(event) {
+	if (!event.target.isContentEditable) return;
 	event.preventDefault();
 	updateCounter('copy');
 }, true);
@@ -23,6 +24,7 @@ document.addEventListener('copy', function(event) {
  * Listen for paste events and prevent the default behavior
  */
 document.addEventListener('paste', function(event) {
+	if (!event.target.isContentEditable) return;
 	event.preventDefault();
 	updateCounter('paste');
 }, true);
