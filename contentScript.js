@@ -9,6 +9,14 @@ document.addEventListener('keydown', function(event) {
 		event.preventDefault();
 		updateCounter('backspace');
 	}
+
+	if (isEditable) {
+		// Prevent default behavior for left and right arrow keys
+		if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+				event.preventDefault();
+				console.log('Left or Right movement blocked');
+		}
+}
 }, true);
 
 /**
